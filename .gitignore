@@ -1,0 +1,18 @@
+.metadata
+.settings
+.classpath
+.project
+*.class
+
+# IntelliJ #
+*.iml
+*.ipr
+*.iws
+.idea/
+target/
+ignore/
+
+# Package Files #
+*.jar
+*.war
+*.ear
