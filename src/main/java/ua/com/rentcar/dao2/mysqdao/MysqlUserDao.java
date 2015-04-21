@@ -19,8 +19,8 @@ public class MysqlUserDao implements UserDao {
     private Connection connection=null;
     private String getLastInsertId = "SELECT LAST_INSERT_ID();";
     private String insertSqlQuery = "INSERT INTO users"
-            + "(avatar, email, passport, login, password, lastLogin, name) VALUES"
-            + "(?, ?, ?, ?, ?, ?, ?)";
+            + "(avatar, email, passport, login, password, lastLogin, name, phone) VALUES"
+            + "(?, ?, ?, ?, ?, ?, ?,?)";
     private String selectSqlQuery = "Select id, avatar, email, passport, login, password, lastLogin, name FROM users ";
     private String selectUser = "SELECT * FROM carrenta.users WHERE name=?;";
     public MysqlUserDao(Connection connection) {
@@ -32,6 +32,7 @@ public class MysqlUserDao implements UserDao {
         int res =0;
         try {
             statement = connection.prepareStatement(insertSqlQuery);
+
             statement.setString(1,user.getAvatar());
             statement.setString(2,user.getEmail());
             statement.setString(3, user.getPassport());
@@ -39,6 +40,7 @@ public class MysqlUserDao implements UserDao {
             statement.setString(5, user.getPassword());
             statement.setTimestamp(6, getCurrentTimeStamp());
             statement.setString(7, user.getName());
+            statement.setString(8, user.getPhone());
             statement.executeUpdate();
             logger.info("insert user");
             /*statement.clearParameters();
@@ -76,6 +78,7 @@ public class MysqlUserDao implements UserDao {
             user.setEnabled(resultSet.getInt("enabled"));
             user.setPassword(resultSet.getString("password"));
             user.setLastLogin(resultSet.getTimestamp("lastLogin"));
+            user.setPhone(resultSet.getString("phone"));
             user.setName(resultSet.getString("name"));
         } catch (SQLException e) {
             e.printStackTrace();

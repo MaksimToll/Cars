@@ -16,14 +16,37 @@ public class Car  implements Identified<Integer>{
     private String marka;
     private Timestamp lastUpdate;
     private String number;
+    private String description;
+    private double price;
 
-    public Car(int id, String image, int group, String name, String marka, String number) {
+    public Car(int id, String image, int group, int enabled, String name, String marka, Timestamp lastUpdate, String number, String description, double price) {
         this.id = id;
         this.image = image;
         this.group = group;
+        this.enabled = enabled;
         this.name = name;
         this.marka = marka;
+        this.lastUpdate = lastUpdate;
         this.number = number;
+        this.description = description;
+        this.price = price;
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Car() {
@@ -94,17 +117,5 @@ public class Car  implements Identified<Integer>{
         this.number = number;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", image='" + image + '\'' +
-                ", group=" + group +
-                ", enabled=" + enabled +
-                ", name='" + name + '\'' +
-                ", marka='" + marka + '\'' +
-                ", lastUpdate=" + lastUpdate +
-                ", number='" + number + '\'' +
-                '}';
-    }
+
 }

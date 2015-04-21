@@ -56,6 +56,8 @@ public class MysqlCarDao implements CarDao {
             car.setName(resultSet.getString("name"));
             car.setMarka(resultSet.getString("marka"));
             car.setLastUpdate(resultSet.getTimestamp("last_used"));
+            car.setDescription(resultSet.getString("description"));
+            car.setPrice(resultSet.getDouble("price"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,6 +81,8 @@ public class MysqlCarDao implements CarDao {
             car.setName(resultSet.getString("name"));
             car.setMarka(resultSet.getString("marka"));
             car.setLastUpdate(resultSet.getTimestamp("last_used"));
+            car.setDescription(resultSet.getString("description"));
+            car.setPrice(resultSet.getDouble("price"));
             statement.close();
             connection.close();
         } catch (SQLException e) {
@@ -109,6 +113,8 @@ public class MysqlCarDao implements CarDao {
                 car.setName(rs.getString("name"));
                 car.setMarka(rs.getString("marka"));
                 car.setLastUpdate(rs.getTimestamp("last_used"));
+                car.setDescription(rs.getString("description"));
+                car.setPrice(rs.getDouble("price"));
                 result.add(car);
             }
         } catch (SQLException e) {

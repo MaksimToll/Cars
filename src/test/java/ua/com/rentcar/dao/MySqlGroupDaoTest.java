@@ -1,12 +1,10 @@
 package ua.com.rentcar.dao;
 
-import junit.framework.Assert;
-import org.junit.Test;
-import ua.com.rentcar.entity.Group;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
+import org.junit.Test;
+
+
+
 
 /**
  * Created by maks on 21.01.2015.

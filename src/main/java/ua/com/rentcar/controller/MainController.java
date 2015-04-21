@@ -33,7 +33,7 @@ public class MainController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        DaoFactory mysqlDao = DaoFactory.getDaoFactor(DaoFactory.MYSQL);
+        DaoFactory mysqlDao = DaoFactory.getDaoFactor(DaoFactory.MYSQL); // TODO переделать на уровень сервисов.
         CarDao carDao = mysqlDao.getCarDao();
         List<Car> cars ;
         cars=  carDao.getAllCar();

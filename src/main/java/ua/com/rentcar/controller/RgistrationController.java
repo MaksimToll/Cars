@@ -31,11 +31,12 @@ public class RgistrationController extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        DaoFactory mysqlDao = DaoFactory.getDaoFactor(DaoFactory.MYSQL);
+        DaoFactory mysqlDao = DaoFactory.getDaoFactor(DaoFactory.MYSQL);// TODO создать на слое сервисов
         UserDao userDao = mysqlDao.getUserDao();
         User user = new User();
         user.setName(request.getParameter("name"));
         user.setLogin(request.getParameter("login"));
+        user.setPhone("phone");
         user.setPassport(request.getParameter("passport"));
         user.setPassword(request.getParameter("password"));
         user.setEmail(request.getParameter("email"));

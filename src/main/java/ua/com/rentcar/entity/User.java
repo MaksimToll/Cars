@@ -9,6 +9,7 @@ import java.sql.Timestamp;
  */
 public class User implements Identified<Integer> {
     private int id;
+    private String phone;
     private String avatar;
     private String email;
     private String passport;
@@ -82,6 +83,14 @@ public class User implements Identified<Integer> {
         return lastLogin;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
@@ -95,6 +104,7 @@ public class User implements Identified<Integer> {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", phone='" + phone + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", email='" + email + '\'' +
                 ", passport='" + passport + '\'' +

@@ -56,6 +56,16 @@
 
             <!-- Text input-->
             <div class="form-group">
+                <label class="col-md-4 control-label" for="phone">phone</label>
+                <div class="col-md-4">
+                    <input id="phone" name="phone" placeholder="placeholder" class="form-control input-md" type="text">
+
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+            <div class="form-group">
                 <label class="col-md-4 control-label" for="name">input name</label>
                 <div class="col-md-4">
                     <input id="name" name="name" type="text" placeholder="name" class="form-control input-md">
@@ -74,7 +84,7 @@
 
             <!-- Password input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">pasword</label>
+                <label class="col-md-4 control-label" for="password">password</label>
                 <div class="col-md-4">
                     <input id="password" name="password" type="password" placeholder="placeholder" class="form-control input-md">
 
@@ -83,9 +93,9 @@
 
             <!-- Password input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="passwordinput">Password Input</label>
+                <label class="col-md-4 control-label" for="password_repeat"> repeat password</label>
                 <div class="col-md-4">
-                    <input id="passwordinput" name="passwordinput" type="password" placeholder="placeholder" class="form-control input-md">
+                    <input id="password_repeat" name="passwordinput" type="password" placeholder="placeholder" class="form-control input-md">
 
                 </div>
             </div>
