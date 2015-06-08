@@ -19,6 +19,7 @@ public class MysqlUserDao implements UserDao {
     private Connection connection=null;
     private String getLastInsertId = "SELECT LAST_INSERT_ID();";
     private String checkUserByLogin ="SELECT COUNT(*) FROM carrenta.users WHERE login = ?;";
+    private String checkUserByEmail ="SELECT COUNT(*) FROM carrenta.users WHERE email = ?;";
     private String insertSqlQuery = "INSERT INTO users"
             + "(avatar, email, passport, login, password, lastLogin, name, phone) VALUES"
             + "(?, ?, ?, ?, ?, ?, ?,?)";
@@ -93,22 +94,46 @@ public class MysqlUserDao implements UserDao {
     public List<User> getAll() {
         return null;
     }
-
+    /**
+     * @return true if login exist in database, else false*/
     @Override
     public boolean checkUserByLogin(String login) {
-//        try {
-//            statement = connection.prepareStatement(checkUserByLogin);
-//            ResultSet resultSet = statement.executeQuery();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        return false;
+        try {
+            statement = connection.prepareStatement(checkUserByLogin);
+            statement.setString(1,login);
+            ResultSet resultSet = statement.executeQuery();
+            System.out.println(resultSet.next());
+            if(resultSet.getInt(1)==0){
+                return false;   // no user with this login TODO возможно лучше винести ретурн из трая, ведь возможны проблеми с закрытием соединения?
+            }
+
+            logger.trace("user with this login count "+resultSet.getInt(1));
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true; // user with this login exist
     }
 
     @Override
     public boolean checkUserByEmail(String email) {
-        return false;
+        try {
+            statement = connection.prepareStatement(checkUserByEmail);
+            statement.setString(1,email);
+            ResultSet resultSet = statement.executeQuery();
+            System.out.println(resultSet.next());
+            if(resultSet.getInt(1)==0){
+                return false;   // no user with this emial TODO возможно лучше винести ретурн из трая, ведь возможны проблеми с закрытием соединения?
+            }
+
+            logger.trace("user with this login count "+resultSet.getInt(1));
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true; // user with this email exist
     }
 
     private static java.sql.Timestamp getCurrentTimeStamp() { //TODO move in util

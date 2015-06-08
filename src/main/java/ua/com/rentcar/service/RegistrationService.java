@@ -13,6 +13,10 @@ public class RegistrationService {
     private final Logger logger = Logger.getLogger(RegistrationService.class);
 
     public boolean registrationUser(User user){
+        if(checkUserInDb(user)){
+            logger.trace("user email or user login already exist in database "+user);
+            return false;
+        }
         try {
             userDao.insertUser(user);
             logger.info(user);
@@ -31,9 +35,9 @@ public class RegistrationService {
         boolean userByLogin = userDao.checkUserByLogin(userFromClient.getLogin()); // find user in db use login user from client;
         boolean userByEmail = userDao.checkUserByEmail(userFromClient.getEmail()); // find user in db use login user from client;
         if(userByEmail && userByLogin){
-            return false;
-        }else{
             return true;
+        }else{
+            return false;
         }
     }
 
