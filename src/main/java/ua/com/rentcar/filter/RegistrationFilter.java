@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by maks on 29.01.2015.
- */
 //@WebFilter(urlPatterns = "views/registration.jsp" , initParams = @WebInitParam(name = "NOT_VALID_PAGE", value = "views/notValidData.jsp"))
 public class RegistrationFilter implements Filter {
     private String initPath;

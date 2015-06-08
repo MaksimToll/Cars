@@ -1,4 +1,4 @@
-package ua.com.rentcar.exeprion;
+package ua.com.rentcar.exeption;
 
 import java.sql.SQLException;
 

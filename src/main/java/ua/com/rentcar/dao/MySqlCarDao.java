@@ -2,7 +2,7 @@ package ua.com.rentcar.dao;
 
 //import com.mysql.fabric.xmlrpc.base.Data;
 import ua.com.rentcar.entity.Car;
-import ua.com.rentcar.exeprion.PersistException;
+import ua.com.rentcar.exeption.PersistException;
 
 import java.sql.*;
 import java.sql.Date;

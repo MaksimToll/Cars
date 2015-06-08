@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by fagim on 20.04.15.
  */
 @WebServlet("/registration")
-public class RegistrController extends HttpServlet {
+public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*super.doPost(request, response);*/

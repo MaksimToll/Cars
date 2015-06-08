@@ -14,21 +14,22 @@ import java.util.List;
  * Created by maks on 28.01.2015.
  */
 public class MysqlUserDao implements UserDao {
-    private final Logger logger = Logger.getLogger(UserDao.class);
+    private final Logger logger = Logger.getLogger(MysqlUserDao.class);
     PreparedStatement statement = null;
     private Connection connection=null;
     private String getLastInsertId = "SELECT LAST_INSERT_ID();";
+    private String checkUserByLogin ="SELECT COUNT(*) FROM carrenta.users WHERE login = ?;";
     private String insertSqlQuery = "INSERT INTO users"
             + "(avatar, email, passport, login, password, lastLogin, name, phone) VALUES"
             + "(?, ?, ?, ?, ?, ?, ?,?)";
     private String selectSqlQuery = "Select id, avatar, email, passport, login, password, lastLogin, name FROM users ";
-    private String selectUser = "SELECT * FROM carrenta.users WHERE name=?;";
+    private String selectUserByLogin = "SELECT * FROM carrenta.users WHERE login=?;";
     public MysqlUserDao(Connection connection) {
         this.connection =connection;
     }
 
     @Override
-    public int insertUser(User user) {
+    public int insertUser(User user) throws SQLException{
         int res =0;
         try {
             statement = connection.prepareStatement(insertSqlQuery);
@@ -49,7 +50,8 @@ public class MysqlUserDao implements UserDao {
                 res = rs.getInt("id");
             }*/
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e+" <-----------can`t insert user to database problem with users rows ---------->");;
+            throw e;
         }
         return res;
     }
@@ -65,11 +67,11 @@ public class MysqlUserDao implements UserDao {
     }
 
     @Override
-    public User findUser(String name) {
-        PreparedStatement statement = null;
+    public User findUser(String login) {
+
         User user = new User();
         try {
-            statement = connection.prepareStatement(selectUser);
+            statement = connection.prepareStatement(selectUserByLogin);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             user.setId(resultSet.getInt("id"));
@@ -81,7 +83,8 @@ public class MysqlUserDao implements UserDao {
             user.setPhone(resultSet.getString("phone"));
             user.setName(resultSet.getString("name"));
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("<------- problem with found user by name --------->", e);
+//            e.printStackTrace();
         }
         return user;
     }
@@ -90,6 +93,24 @@ public class MysqlUserDao implements UserDao {
     public List<User> getAll() {
         return null;
     }
+
+    @Override
+    public boolean checkUserByLogin(String login) {
+//        try {
+//            statement = connection.prepareStatement(checkUserByLogin);
+//            ResultSet resultSet = statement.executeQuery();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        return false;
+    }
+
+    @Override
+    public boolean checkUserByEmail(String email) {
+        return false;
+    }
+
     private static java.sql.Timestamp getCurrentTimeStamp() { //TODO move in util
 
         java.util.Date today = new java.util.Date();

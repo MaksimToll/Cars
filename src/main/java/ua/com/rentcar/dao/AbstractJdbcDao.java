@@ -1,6 +1,6 @@
 package ua.com.rentcar.dao;
 
-import ua.com.rentcar.exeprion.PersistException;
+import ua.com.rentcar.exeption.PersistException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -4,11 +4,13 @@ import ua.com.rentcar.dao2.DaoFactory;
 import ua.com.rentcar.dao2.UserDao;
 import ua.com.rentcar.entity.User;
 
+import java.sql.SQLException;
+
 /**
  * Created by maks on 28.01.2015.
  */
 public class TestJdbc {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DaoFactory daoFactory = DaoFactory.getDaoFactor(DaoFactory.MYSQL);
         UserDao userDao =daoFactory.getUserDao();
         User user = new User();
